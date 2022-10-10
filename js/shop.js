@@ -72,7 +72,15 @@ var btnAdd = document.getElementsByClassName("btn-outline-dark");
 for (const btn of btnAdd) {
     btn.addEventListener("click", function onClick() {
         console.log("box clicked");
+
     });
+}
+const addKeyAndValue = (arr, key, value) => {
+    arr.forEach(object => {
+        object[key] = value
+    })
+    // console.log(arr)
+    return arr
 }
 
 // Array with products (objects) added directly with push(). Products in this array are repeated.
@@ -100,9 +108,9 @@ function buy(id) {
 
     const product = products.find((prod) => prod.id === id);
     cartList.push(product);
-    console.log(product);
-    console.log(cartList);
     calculateTotal(cartList);
+   console.log('Cart List:', cartList);
+   generateCart()
 }
 
 // Exercise 2
@@ -114,6 +122,7 @@ function cleanCart() {
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
+
     // let total = 0;
     // for (const prod of cartList) {
     //     total += prod.price
@@ -133,9 +142,7 @@ function calculateTotal() {
     const total = cartList.reduce((acc, curr) => {
         return acc + curr.price
     }, 0)
-    console.log(total);
 
-    
 
     // const addKeyAndValue = (arr, key, value) => {
     //     arr.forEach(object => {
@@ -144,7 +151,7 @@ function calculateTotal() {
     //     console.log(arr)
     //     return arr
     // }
-    // addKeyAndValue(products, 'quantity', 'value')
+    addKeyAndValue(products, 'subtotal', total)
 
 }
 
@@ -152,7 +159,33 @@ function calculateTotal() {
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart,
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-    }
+
+//  cartList.forEach(prod =>{
+//     let quantity = 1
+//     addKeyAndValue(products, 'quantity', quantity)
+
+//     if(cart.includes(prod)){
+//     prod.quantity = quantity + 1
+//         return prod
+//     }else{
+//         cart.push(prod)
+//         return prod
+//     }
+
+// })
+let quantity = 0
+addKeyAndValue(products, 'quantity', quantity)
+for(const prod of cartList){
+    
+    if(cart.includes(prod)){
+        prod.quantity +=1
+    }else{cart.push(prod)
+         prod.quantity = 1}
+}
+
+   console.log('this is the cart:', cart); 
+}
+    
 
     // Exercise 5
     function applyPromotionsCart() {
