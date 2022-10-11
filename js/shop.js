@@ -2,6 +2,8 @@
 
 // Selecting elements
 
+// var btnAdd = document.getElementsByClassName("btn-outline-dark");
+
 var products = [
     {
         id: 1,
@@ -67,27 +69,19 @@ var products = [
     },
 ];
 
-var btnAdd = document.getElementsByClassName("btn-outline-dark");
-
-for (const btn of btnAdd) {
-    btn.addEventListener("click", function onClick() {
-        console.log("box clicked");
-
-    });
-}
-const addKeyAndValue = (arr, key, value) => {
-    arr.forEach(object => {
-        object[key] = value
-    })
-    // console.log(arr)
-    return arr
-}
+// Function that creates a new key and a new value to the object
+// const addKeyAndValue = (arr, key, value) => {
+//     arr.forEach(object => {
+//         object[key] = value
+//     })
+    
+//     return arr
+// }
 
 // Array with products (objects) added directly with push(). Products in this array are repeated.
 var cartList = [];
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-var cart = [];
 
 var total = 0;
 
@@ -96,26 +90,27 @@ function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 
-    // FOR OF
+    //--- FOR OF----//
 
     // for(const product of products){
     //     if(product.id === id){
-    //         cartList.push(product)
-    //         console.log(product);
-    //         console.log(cartList);
+    //        cartList.push(product)
     //     }
     // }
 
     const product = products.find((prod) => prod.id === id);
     cartList.push(product);
-    calculateTotal(cartList);
-   console.log('Cart List:', cartList);
-   generateCart()
+
+    console.log('Cart List:', cartList);
+    generateCart()
+    // applyPromotionsCart(cart)
 }
 
 // Exercise 2
 function cleanCart() {
     cartList = [];
+    cart = []
+    total = 0
     console.log("cart emptied");
 }
 
@@ -123,96 +118,102 @@ function cleanCart() {
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
 
-    // let total = 0;
+ 
     // for (const prod of cartList) {
     //     total += prod.price
     // }
-    // console.log(`the total price is ${total}`);
-
+  
     // cartList.forEach((prod) => {
     //     total += prod.price;
+        
     // });
-    // console.log(total);
 
+   
     // cartList.map(prod => {
     //     total += prod.price
     // })
-    // console.log(total);
 
-    const total = cartList.reduce((acc, curr) => {
+
+     total = cartList.reduce((acc, curr) => {
         return acc + curr.price
     }, 0)
 
-
-    // const addKeyAndValue = (arr, key, value) => {
-    //     arr.forEach(object => {
-    //         object[key] = value
-    //     })
-    //     console.log(arr)
-    //     return arr
-    // }
-    addKeyAndValue(products, 'subtotal', total)
-
+    
+   
 }
 
 // Exercise 4
 function generateCart() {
+    var cart = [];
+    
     // Using the "cartlist" array that contains all the items in the shopping cart,
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
 
-//  cartList.forEach(prod =>{
-//     let quantity = 1
-//     addKeyAndValue(products, 'quantity', quantity)
+    
+   
+    for (const prod of cartList) {
 
-//     if(cart.includes(prod)){
-//     prod.quantity = quantity + 1
-//         return prod
+        if (cart.includes(prod)) {
+            prod.quantity += 1
+        } else {
+            cart.push(prod)
+            prod.quantity = 1
+        }
+    }
+
+
+    
+
+
+console.log('this is the cart', cart);
+calculateTotal();
+}
+    
+
+// Exercise 5
+function applyPromotionsCart(arr) {
+    // Apply promotions to each item in the array "cart"
+
+//     let subtotalWithDiscount = 0
+//     addKeyAndValue(products, 'subtotalWithDiscount', subtotalWithDiscount)
+
+//    arr.forEach(prod => {
+//     if(prod.id === 1 && prod.quantity > 3){
+//         console.log('same id');
+//         prod.subtotalWithDiscount = 10
 //     }else{
-//         cart.push(prod)
-//         return prod
+//         prod.subtotalWithDiscount = total
+
+//         console.log('promotion', cart)
+    
 //     }
-
 // })
-let quantity = 0
-addKeyAndValue(products, 'quantity', quantity)
-for(const prod of cartList){
-    
-    if(cart.includes(prod)){
-        prod.quantity +=1
-    }else{cart.push(prod)
-         prod.quantity = 1}
+
+}
+   
+
+// Exercise 6
+function printCart() {
+    // Fill the shopping cart modal manipulating the shopping cart dom
 }
 
-   console.log('this is the cart:', cart); 
+// ** Nivell II **
+
+// Exercise 7
+function addToCart(id) {
+    // Refactor previous code in order to simplify it
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 }
-    
 
-    // Exercise 5
-    function applyPromotionsCart() {
-        // Apply promotions to each item in the array "cart"
-    }
+// Exercise 8
+function removeFromCart(id) {
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cartList array
+}
 
-    // Exercise 6
-    function printCart() {
-        // Fill the shopping cart modal manipulating the shopping cart dom
-    }
-
-    // ** Nivell II **
-
-    // Exercise 7
-    function addToCart(id) {
-        // Refactor previous code in order to simplify it
-        // 1. Loop for to the array products to get the item to add to cart
-        // 2. Add found product to the cart array or update its quantity in case it has been added previously.
-    }
-
-    // Exercise 8
-    function removeFromCart(id) {
-        // 1. Loop for to the array products to get the item to add to cart
-        // 2. Add found product to the cartList array
-    }
-
-    function open_modal() {
-        console.log("Open Modal");
-        printCart();
-    }
+function open_modal() {
+    console.log("Open Modal");
+    printCart();
+}
+   
