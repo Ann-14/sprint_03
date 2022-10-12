@@ -77,11 +77,9 @@ var products = [
     
 //     return arr
 // }
-
-// Array with products (objects) added directly with push(). Products in this array are repeated.
+var cart = [];
 var cartList = [];
 
-// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 
 var total = 0;
 
@@ -98,20 +96,18 @@ function buy(id) {
     //     }
     // }
 
+
     const product = products.find((prod) => prod.id === id);
     cartList.push(product);
 
     console.log('Cart List:', cartList);
+    
     generateCart()
-    // applyPromotionsCart(cart)
 }
 
 // Exercise 2
 function cleanCart() {
-    cartList = [];
-    cart = []
-    total = 0
-    console.log("cart emptied");
+        cart = []
 }
 
 // Exercise 3
@@ -119,24 +115,22 @@ function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
 
  
-    // for (const prod of cartList) {
-    //     total += prod.price
-    // }
-  
-    // cartList.forEach((prod) => {
-    //     total += prod.price;
-        
-    // });
-
+    // cartList.forEach((prod) => 
+    //     total += prod.price);
+   
    
     // cartList.map(prod => {
-    //     total += prod.price
-    // })
+    //     total += prod.price})
 
 
-     total = cartList.reduce((acc, curr) => {
-        return acc + curr.price
-    }, 0)
+    //  total = cartList.reduce((acc, curr) => {
+    //     return acc + curr.price
+    // }, 0)
+
+    for(i= 0; i < cartList.length; i++){
+        total += (cartList[i].price)}
+    //   }
+    //    console.log('withOutDiscount', total);
 
     
    
@@ -144,51 +138,81 @@ function calculateTotal() {
 
 // Exercise 4
 function generateCart() {
-    var cart = [];
-    
     // Using the "cartlist" array that contains all the items in the shopping cart,
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
+ cart = [];
+    // for (const prod of cartList) {
 
+    //     if (cart.includes(prod)) {
+    //         prod.quantity += 1
+    //         product.subtotal += product.price
+    //     } else {
+    //         cart.push(prod)
+    //         prod.quantity = 1
+    //         product.subtotal = product.price
+    //     }
+    // }
+
+    for (let i = 0; i < cartList.length; i++) {
+        const product = cartList[i]
+        const foundProduct = cart.find((prod)=>
+        prod.id === product.id)
     
-   
-    for (const prod of cartList) {
+        if (foundProduct) {
+            product.quantity += 1
+            product.subtotal += product.price
 
-        if (cart.includes(prod)) {
-            prod.quantity += 1
-        } else {
-            cart.push(prod)
-            prod.quantity = 1
+        } else  {
+            product.quantity = 1
+            product.subtotal = product.price
+            cart.push(product)
         }
     }
-
-
-    
-
-
-console.log('this is the cart', cart);
-calculateTotal();
+      console.log('this is the cart', cart);
+      applyPromotionsCart()
+      calculateTotal()
 }
-    
+
 
 // Exercise 5
-function applyPromotionsCart(arr) {
+function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
 
-//     let subtotalWithDiscount = 0
-//     addKeyAndValue(products, 'subtotalWithDiscount', subtotalWithDiscount)
 
-//    arr.forEach(prod => {
-//     if(prod.id === 1 && prod.quantity > 3){
-//         console.log('same id');
-//         prod.subtotalWithDiscount = 10
-//     }else{
-//         prod.subtotalWithDiscount = total
+    // for( let i =0; i < cartList.length; i++){
+       
+    //      if(cartList[i].id === 1 && cartList[i].quantity > 3){
+    //         cartList[i].price = 10
+    //         cartList[i].reducedPrice = cartList[i].price * cartList[i].quantity
+    //      }
 
-//         console.log('promotion', cart)
+    //      else if(cartList[i].id === 3 && cartList[i].quantity > 4){
+    //         const cupCakePrice = (cartList[i].price /3)*2
+    //        cartList[i].pricewithDiscount = cupCakePrice.toFixed(2)
+    //        cartList[i].reducedPrice = (cartList[i].pricewithDiscount * cartList[i].quantity).toFixed(2)
+           
+    //      }
+    // }
     
-//     }
-// })
+   cart.forEach(prod => {
+    if(prod.id === 1 && prod.quantity > 3){
+        prod.price = 10
+        prod.subtotalWithDiscount = prod.price * prod.quantity
 
+    }else if(prod.id === 3 && prod.quantity > 10){
+        const cupCakePrice = (prod.price/3)*2
+        prod.pricewithDiscount = cupCakePrice.toFixed(2)
+        prod.subtotalWithDiscount = (prod.pricewithDiscount * prod.quantity).toFixed(2)
+    }
+    
+    
+    
+})
+
+console.log('promotion', cart)
+
+    
 }
    
 
