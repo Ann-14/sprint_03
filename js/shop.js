@@ -1,9 +1,5 @@
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
 
-// Selecting elements
-
-// var btnAdd = document.getElementsByClassName("btn-outline-dark");
-
 var products = [
     {
         id: 1,
@@ -68,6 +64,11 @@ var products = [
         type: "clothes",
     },
 ];
+// Selecting elements
+
+// var btnAdd = document.getElementsByClassName("btn-outline-dark");
+
+let tabList = document.getElementById("cart_list").innerHTML 
 
 // Function that creates a new key and a new value to the object
 // const addKeyAndValue = (arr, key, value) => {
@@ -172,6 +173,7 @@ function generateCart() {
       console.log('this is the cart', cart);
       applyPromotionsCart()
       calculateTotal()
+      printCart()
 }
 
 
@@ -204,10 +206,10 @@ function applyPromotionsCart() {
         const cupCakePrice = (prod.price/3)*2
         prod.pricewithDiscount = cupCakePrice.toFixed(2)
         prod.subtotalWithDiscount = (prod.pricewithDiscount * prod.quantity).toFixed(2)
-    }
-    
-    
-    
+        
+   
+    } 
+  
 })
 
 console.log('promotion', cart)
@@ -219,7 +221,43 @@ console.log('promotion', cart)
 // Exercise 6
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+   
+    tabList = []
+    let cartCounter = 0
+    
+    cart.forEach(prod => {
+        if(prod.subtotalWithDiscount){
+            prod.subtotal = prod.subtotalWithDiscount
+            
+        }
+       
+        cartCounter += prod.quantity
+        tabList.push(
+            `<tr>
+                <th scope="row">${prod.name}</th>
+                <td>${prod.price}</td>
+                <td>${prod.quantity}</td>
+                <td>${prod.subtotal}</td>
+                
+                
+                
+            </tr>`)
+           
+    });
+   //Selecting elements
+//   document.getElementById("cart_list").innerHTML = tabList
+  document.getElementById('count_product').innerHTML = cartCounter
+ document.getElementById('total_price').innerHTML = total.toFixed(2)
+
 }
+ 
+function cleanCart(){
+   tabList.innerHTML = ""
+    
+}
+
+
+
 
 // ** Nivell II **
 
