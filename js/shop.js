@@ -1,6 +1,6 @@
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
 
-var products = [
+let products = [
     {
         id: 1,
         name: "cooking oil",
@@ -64,25 +64,10 @@ var products = [
         type: "clothes",
     },
 ];
-// Selecting elements
 
-// var btnAdd = document.getElementsByClassName("btn-outline-dark");
-
-let tabList = document.getElementById("cart_list").innerHTML 
-
-// Function that creates a new key and a new value to the object
-// const addKeyAndValue = (arr, key, value) => {
-//     arr.forEach(object => {
-//         object[key] = value
-//     })
-    
-//     return arr
-// }
-var cart = [];
-var cartList = [];
-
-
-var total = 0;
+let cart = [];
+let cartList = [];
+let total = 0;
 
 // Exercise 1
 function buy(id) {
@@ -102,24 +87,23 @@ function buy(id) {
     cartList.push(product);
 
     console.log('Cart List:', cartList);
-    
     generateCart()
 }
 
 // Exercise 2
 function cleanCart() {
-        cart = []
+    cart = []
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
 
- 
+
     // cartList.forEach((prod) => 
     //     total += prod.price);
-   
-   
+
+
     // cartList.map(prod => {
     //     total += prod.price})
 
@@ -128,21 +112,21 @@ function calculateTotal() {
     //     return acc + curr.price
     // }, 0)
 
-    for(i= 0; i < cartList.length; i++){
-        total += (cartList[i].price)}
-    //   }
+    for (i = 0; i < cartList.length; i++) {
+        total += (cartList[i].price)
+    }
+
     //    console.log('withOutDiscount', total);
 
-    
-   
 }
 
 // Exercise 4
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart,
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
- cart = [];
+    // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
+
+
     // for (const prod of cartList) {
 
     //     if (cart.includes(prod)) {
@@ -154,26 +138,26 @@ function generateCart() {
     //         product.subtotal = product.price
     //     }
     // }
-
+    cart = [];
     for (let i = 0; i < cartList.length; i++) {
         const product = cartList[i]
-        const foundProduct = cart.find((prod)=>
-        prod.id === product.id)
-    
+        const foundProduct = cart.find((prod) =>
+            prod.id === product.id)
+
         if (foundProduct) {
             product.quantity += 1
             product.subtotal += product.price
 
-        } else  {
+        } else {
             product.quantity = 1
             product.subtotal = product.price
             cart.push(product)
         }
     }
-      console.log('this is the cart', cart);
-      applyPromotionsCart()
-      calculateTotal()
-      printCart()
+    console.log('this is the cart', cart);
+    applyPromotionsCart()
+    calculateTotal()
+    printCart()
 }
 
 
@@ -181,9 +165,8 @@ function generateCart() {
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
 
-
     // for( let i =0; i < cartList.length; i++){
-       
+
     //      if(cartList[i].id === 1 && cartList[i].quantity > 3){
     //         cartList[i].price = 10
     //         cartList[i].reducedPrice = cartList[i].price * cartList[i].quantity
@@ -193,79 +176,77 @@ function applyPromotionsCart() {
     //         const cupCakePrice = (cartList[i].price /3)*2
     //        cartList[i].pricewithDiscount = cupCakePrice.toFixed(2)
     //        cartList[i].reducedPrice = (cartList[i].pricewithDiscount * cartList[i].quantity).toFixed(2)
-           
+
     //      }
     // }
-    
-   cart.forEach(prod => {
-    if(prod.id === 1 && prod.quantity > 3){
-        prod.price = 10
-        prod.subtotalWithDiscount = prod.price * prod.quantity
 
-    }else if(prod.id === 3 && prod.quantity > 10){
-        const cupCakePrice = (prod.price/3)*2
-        prod.pricewithDiscount = cupCakePrice.toFixed(2)
-        prod.subtotalWithDiscount = (prod.pricewithDiscount * prod.quantity).toFixed(2)
-        
-   
-    } 
-  
-})
+    cart.forEach(prod => {
+        if (prod.id === 1 && prod.quantity > 3) {
+            prod.price = 10
+            prod.subtotalWithDiscount = prod.price * prod.quantity
 
-console.log('promotion', cart)
+        } else if (prod.id === 3 && prod.quantity > 10) {
+            const cupCakePrice = (prod.price / 3) * 2
+            prod.pricewithDiscount = cupCakePrice.toFixed(2)
+            prod.subtotalWithDiscount = (prod.pricewithDiscount * prod.quantity).toFixed(2)
+        }
 
-    
+    })
+    console.log('promotion', cart)
 }
-   
+
 
 // Exercise 6
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
-   
-    tabList = []
     let cartCounter = 0
-    
+    let tabList = []
+
     cart.forEach(prod => {
-        if(prod.subtotalWithDiscount){
-            prod.subtotal = prod.subtotalWithDiscount
-            
-        }
-       
+
         cartCounter += prod.quantity
         tabList.push(
-            `<tr>
-                <th scope="row">${prod.name}</th>
-                <td>${prod.price}</td>
-                <td>${prod.quantity}</td>
-                <td>${prod.subtotal}</td>
+
+            `
+            <tr>
+            <th scope="row">$${prod.name}</th>
+                <td>$${prod.price}</td>
+                <td>$${prod.quantity}</td>
+                <td>$${prod.subtotal}</td>
+                <td>$${prod.subtotalWithDiscount ? prod.subtotalWithDiscount : prod.subtotal}</td>
                 
-                
-                
-            </tr>`)
-           
+            </tr>
+            `)
     });
-   //Selecting elements
-//   document.getElementById("cart_list").innerHTML = tabList
-  document.getElementById('count_product').innerHTML = cartCounter
- document.getElementById('total_price').innerHTML = total.toFixed(2)
+
+    //Selecting elements
+
+    document.getElementById("cart_list").innerHTML = tabList
+    document.getElementById('count_product').innerHTML = cartCounter
+    document.getElementById('total_price').innerHTML = total.toFixed(2)
 
 }
- 
-function cleanCart(){
-   tabList.innerHTML = ""
-    
+
+function cleanCart() {
+
+    document.getElementById("cart_list").innerHTML = ' '
+    document.getElementById('total_price').innerHTML = '0'
+
+
 }
 
 
 
 
 // ** Nivell II **
+let cart2 = []
 
 // Exercise 7
 function addToCart(id) {
     // Refactor previous code in order to simplify it
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+
 }
 
 // Exercise 8
@@ -278,4 +259,3 @@ function open_modal() {
     console.log("Open Modal");
     printCart();
 }
-   
