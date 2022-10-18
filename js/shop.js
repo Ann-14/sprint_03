@@ -81,8 +81,6 @@ function buy(id) {
     //        cartList.push(product)
     //     }
     // }
-
-
     const product = products.find((prod) => prod.id === id);
     cartList.push(product);
 
@@ -124,8 +122,6 @@ function calculateTotal() {
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart,
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-    // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-
 
     // for (const prod of cartList) {
 
@@ -209,9 +205,9 @@ function printCart() {
 
             `
             <tr>
-            <th scope="row">$${prod.name}</th>
+            <th scope="row">${prod.name}</th>
                 <td>$${prod.price}</td>
-                <td>$${prod.quantity}</td>
+                <td>${prod.quantity}</td>
                 <td>$${prod.subtotal}</td>
                 <td>$${prod.subtotalWithDiscount ? prod.subtotalWithDiscount : prod.subtotal}</td>
                 
@@ -244,12 +240,52 @@ function addToCart(id) {
     // Refactor previous code in order to simplify it
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.   
-}
 
+    // for (const prod of products) {
+    //     if (prod.id === id) {
+    //         if (cart2.includes(prod)) {
+    //             prod.quantity += 1
+    //         }
+
+    //         else {
+    //             cart2.push(prod)
+    //             prod.quantity = 1
+    //         }
+    //     }
+    // }
+    // console.log(cart2)
+
+    products.forEach(prod =>{
+        if (prod.id === id) {
+                    if (cart2.includes(prod)) {
+                        prod.quantity += 1
+                        prod.subtotal = prod.price * prod.quantity
+                    }
+                    else {
+                        cart2.push(prod)
+                        prod.quantity = 1
+                        prod.subtotal = prod.price
+                    }
+                }
+      })
+            console.log('this is cart2:', cart2)   
+            calculateTotalRefactor()
+    } 
+
+function calculateTotalRefactor(){
+cart2.forEach(prod =>{
+    const subtotalprod = prod.price * prod.quantity
+    subtotalAll =[]
+    subtotalAll.push(subtotalprod)
+    console.log('this is cart subtotal', subtotalAll)
+})
+
+}
 // Exercise 8
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+
 }
 
 function open_modal() {
