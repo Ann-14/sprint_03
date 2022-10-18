@@ -29,7 +29,7 @@ form.addEventListener('submit', e => {
 		regPassword: /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{3,8}$/,
 		regPhone: /^\d{3,14}$/,
 		regNames: /^[A-Za-z\s]*$/,
-		regAddress: /^[a-zA-Z0-9]{3,100}$/
+		regAddress: /^[A-Za-z0-9'\.\-\s\,]{3,80}$/,
 	}
 
 	// Validate fields entered by the user: name, phone, password, and email
@@ -41,6 +41,7 @@ form.addEventListener('submit', e => {
 
 	} else {
 		if (fName.value.match(regEx.regNames)) {
+			fName.classList.remove('is-invalid')
 			fName.classList.add('is-valid')
 		}
 	}
@@ -52,6 +53,7 @@ form.addEventListener('submit', e => {
 
 	} else {
 		if (fLastN.value.match(regEx.regNames)) {
+			fLastN.classList.remove('is-invalid')
 			fLastN.classList.add('is-valid')
 		}
 	}
@@ -63,6 +65,7 @@ form.addEventListener('submit', e => {
 
 	} else {
 		if (fEmail.value.match(regEx.regEmail)) {
+			fEmail.classList.remove('is-invalid')
 			fEmail.classList.add('is-valid')
 		}
 	}
@@ -73,28 +76,31 @@ form.addEventListener('submit', e => {
 
 	} else {
 		if (fPassword.value.match(regEx.regPassword)) {
+			fPassword.classList.remove('is-invalid')
 			fPassword.classList.add('is-valid')
 		}
 	}
 
-	if (fAddress.value == "" || fAddress.value.length < 3) {
+	if (fAddress.value == "" || !fAddress.value.match(regEx.regAddress) || fAddress.value.length < 3) {
 		fAddress.classList.add('is-invalid')
 		error++;
 		fAddress.focus()
 	} else {
 		if (fAddress.value.match(regEx.regAddress)) {
+			fAddress.classList.remove('is-invalid')
 			fAddress.classList.add('is-valid')
 		}
 	}
 
-	
+
 	if (fPhone.value == "" || !fPhone.value.match(regEx.regPhone)) {
 		fPhone.classList.add('is-invalid')
 		error++;
 		fPhone.focus()
 
-	}else {
+	} else {
 		if (fPhone.value.match(regEx.regPhone)) {
+			fPhone.classList.remove('is-invalid')
 			fPhone.classList.add('is-valid')
 		}
 	}
