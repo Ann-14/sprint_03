@@ -4,7 +4,6 @@ const btnSubmit = document.querySelector("#btn-submit")
 
 // Exercise 6
 form.addEventListener('submit', e => {
-
 	//preventing reload if error
 	let error = 0;
 	// Get the input fields
@@ -31,38 +30,31 @@ form.addEventListener('submit', e => {
 		regNames: /^[A-Za-z\s]*$/,
 		regAddress: /^[A-Za-z0-9'\.\-\s\,]{3,80}$/,
 	}
-
 	// Validate fields entered by the user: name, phone, password, and email
 	if (fName.value == "" || !fName.value.match(regEx.regNames) || fName.value.length < 3) {
 		fName.classList.add('is-invalid')
 		error++;
 		fName.focus()
-
-
 	} else {
 		if (fName.value.match(regEx.regNames)) {
 			fName.classList.remove('is-invalid')
 			fName.classList.add('is-valid')
 		}
 	}
-
 	if (fLastN.value == "" || !fLastN.value.match(regEx.regNames) || fLastN.value.length < 3) {
 		fLastN.classList.add('is-invalid')
 		error++;
 		fLastN.focus()
-
 	} else {
 		if (fLastN.value.match(regEx.regNames)) {
 			fLastN.classList.remove('is-invalid')
 			fLastN.classList.add('is-valid')
 		}
 	}
-
 	if (fEmail.value == "" || !fEmail.value.match(regEx.regEmail) || fEmail.value.length < 3) {
 		fEmail.classList.add('is-invalid')
 		error++;
 		fEmail.focus()
-
 	} else {
 		if (fEmail.value.match(regEx.regEmail)) {
 			fEmail.classList.remove('is-invalid')
@@ -73,14 +65,12 @@ form.addEventListener('submit', e => {
 		fPassword.classList.add('is-invalid')
 		error++;
 		fPassword.focus()
-
 	} else {
 		if (fPassword.value.match(regEx.regPassword)) {
 			fPassword.classList.remove('is-invalid')
 			fPassword.classList.add('is-valid')
 		}
 	}
-
 	if (fAddress.value == "" || !fAddress.value.match(regEx.regAddress) || fAddress.value.length < 3) {
 		fAddress.classList.add('is-invalid')
 		error++;
@@ -91,8 +81,6 @@ form.addEventListener('submit', e => {
 			fAddress.classList.add('is-valid')
 		}
 	}
-
-
 	if (fPhone.value == "" || !fPhone.value.match(regEx.regPhone)) {
 		fPhone.classList.add('is-invalid')
 		error++;
@@ -104,15 +92,9 @@ form.addEventListener('submit', e => {
 			fPhone.classList.add('is-valid')
 		}
 	}
-
 	if (error > 0) {
 		e.preventDefault()
 	} else {
 		alert('Saved!✔')
-
-
-
 	}
-
-}
-)
+})

@@ -113,9 +113,7 @@ function calculateTotal() {
     for (i = 0; i < cartList.length; i++) {
         total += (cartList[i].price)
     }
-
     //    console.log('withOutDiscount', total);
-
 }
 
 // Exercise 4
@@ -193,7 +191,7 @@ function applyPromotionsCart() {
 
 
 // Exercise 6
-function printCart() {
+function printCart(cart) {
     // Fill the shopping cart modal manipulating the shopping cart dom
     let cartCounter = 0
     let tabList = []
@@ -219,16 +217,14 @@ function printCart() {
 
     document.getElementById("cart_list").innerHTML = tabList
     document.getElementById('count_product').innerHTML = cartCounter
-    document.getElementById('total_price').innerHTML = total.toFixed(2)
-
+    // document.getElementById('total_price').innerHTML = total.toFixed(2)
+    //(Level II)
+    document.getElementById('total_price').innerHTML = totalRefactor.toFixed(2)
 }
 
 function cleanCart() {
-
     document.getElementById("cart_list").innerHTML = ' '
     document.getElementById('total_price').innerHTML = '0'
-
-
 }
 
 
@@ -255,40 +251,49 @@ function addToCart(id) {
     // }
     // console.log(cart2)
 
-    products.forEach(prod =>{
+    products.forEach(prod => {
         if (prod.id === id) {
-                    if (cart2.includes(prod)) {
-                        prod.quantity += 1
-                        prod.subtotal = prod.price * prod.quantity
-                    }
-                    else {
-                        cart2.push(prod)
-                        prod.quantity = 1
-                        prod.subtotal = prod.price
-                    }
-                }
-      })
-            console.log('this is cart2:', cart2)   
-            calculateTotalRefactor()
-    } 
-
-function calculateTotalRefactor(){
-cart2.forEach(prod =>{
-    const subtotalprod = prod.price * prod.quantity
-    subtotalAll =[]
-    subtotalAll.push(subtotalprod)
-    console.log('this is cart subtotal', subtotalAll)
-})
-
+            if (cart2.includes(prod)) {
+                prod.quantity += 1
+                prod.subtotal = prod.price * prod.quantity // Needs spread to avoid products modification
+            }
+            else {
+                cart2.push(prod)
+                prod.quantity = 1
+                prod.subtotal = prod.price
+            }
+        }
+    })
+    console.log('this is cart2:', cart2)
+    calculateTotalRefactor()
 }
+
 // Exercise 8
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 
+    cart2.forEach(prod =>{
+        if(prod.id === id){
+            prod.quantity --
+            calculateTotalRefactor()
+             if(prod.quantity === 0){  
+               cart2 = cart2.splice(1)
+            }  
+        }
+        console.log('this is the final cart', cart2)
+    })
 }
 
 function open_modal() {
     console.log("Open Modal");
-    printCart();
+    printCart(cart2);
+}
+
+function calculateTotalRefactor() {
+    totalRefactor = cart2.reduce((acc, curr) => {
+        return acc + (curr.price * curr.quantity)
+    }, 0)
+    console.log('The total amount is', totalRefactor)
+    printCart(cart2)
 }
