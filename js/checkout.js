@@ -1,6 +1,6 @@
 
-const form = document.getElementsByClassName("form")[0];
-const btnSubmit = document.querySelector("#btn-submit")
+const form = document.querySelector(".form");
+// const btnSubmit = document.querySelector("#btn-submit")
 
 // Exercise 6
 form.addEventListener('submit', e => {
@@ -14,19 +14,11 @@ form.addEventListener('submit', e => {
 	let fAddress = document.getElementById("fAddress");
 	let fPhone = document.getElementById("fPhone");
 
-	// Get the error elements
-	let errorName = document.getElementById("errorName");
-	let errorLastN = document.getElementById("errorLastN");
-	let errorEmail = document.getElementById("errorEmail");
-	let errorPassword = document.getElementById("errorPassword");
-	let errorAddress = document.getElementById("errorAddress");
-	let errorPhone = document.getElementById("errorPhone");
-
 	//Regex
 	const regEx = {
 		regEmail: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
 		regPassword: /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{3,8}$/,
-		regPhone: /^\d{3,14}$/,
+		regPhone: /^\d{9,14}$/,
 		regNames: /^[A-Za-z\s]*$/,
 		regAddress: /^[A-Za-z0-9'\.\-\s\,]{3,80}$/,
 	}
@@ -98,3 +90,11 @@ form.addEventListener('submit', e => {
 		alert('Saved!✔')
 	}
 })
+
+	// Get the error elements
+	// let errorName = document.getElementById("errorName");
+	// let errorLastN = document.getElementById("errorLastN");
+	// let errorEmail = document.getElementById("errorEmail");
+	// let errorPassword = document.getElementById("errorPassword");
+	// let errorAddress = document.getElementById("errorAddress");
+	// let errorPhone = document.getElementById("errorPhone");

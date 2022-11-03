@@ -173,7 +173,7 @@ function applyPromotionsCart() {
   //      }
   // }
   for (let i = 0; i < cart.length; i++) {
-    if (cart[i].id === 1 && cart[i].quantity > 3) {
+    if (cart[i].id === 1 && cart[i].quantity >= 3) {
       cart[i].subtotalWithDiscount = cart[i].quantity * 10;
       hasDiscount = true;
     } else if (cart[i].quantity < 3) {
@@ -221,11 +221,10 @@ function printCart() {
                 <td>$${prod.price}</td>
                 <td>${prod.quantity}</td>
                 <td>$${prod.subtotal}</td>
-                <td>$${
-                  prod.subtotalWithDiscount
-                    ? prod.subtotalWithDiscount
-                    : prod.subtotal
-                }</td>   
+                <td>$${prod.subtotalWithDiscount
+        ? prod.subtotalWithDiscount
+        : prod.subtotal
+      }</td>   
              </tr> `
     );
   });
