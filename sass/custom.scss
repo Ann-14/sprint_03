@@ -1,7 +1,6 @@
 
 header{
     background-image: url("../images/mike-petrucci-c9FQyqIECds-unsplash.jpg")
-    
     }
 button{
     width: 7rem;
@@ -19,19 +18,18 @@ a.btn.myButton{
     border-color: transparent;
     border-radius: 1rem
 }
-
 a.nav-link{
     color: black;
 }
 a.nav-link:hover{
 text-decoration: underline;
 color: black;
-font-weight: 300;
-   
+font-weight: 300; 
 }
 
 h3{
     background-color:  rgb(235, 192, 99);
+    padding: 0.5rem;
 }
 a.btn.btnCheckOut1{
     background-color:  rgb(235, 192, 99);
