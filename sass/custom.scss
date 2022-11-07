@@ -8,13 +8,13 @@ button{
 }
 
 button.myButton{
-    background-color: rgb(226, 171, 54);
+    background-color: rgb(235, 192, 99);
     color: black;
     border-color: transparent;
     border-radius: 1rem
 }
 a.btn.myButton{
-    background-color: rgb(226, 171, 54);
+    background-color:rgb(235, 192, 99);
     color: black;
     border-color: transparent;
     border-radius: 1rem
@@ -25,8 +25,27 @@ a.nav-link{
 }
 a.nav-link:hover{
 text-decoration: underline;
+color: black;
+font-weight: 300;
    
-   
+}
+
+h3{
+    background-color:  rgb(235, 192, 99);
+}
+a.btn.btnCheckOut1{
+    background-color:  rgb(235, 192, 99);
+    color: black;
+    border-color: transparent;
+    border-radius: 1rem;
+  
+} 
+button.btnCheckOut{
+    background-color:  rgb(235, 192, 99);
+   color: rgb(45, 43, 43);
+    border-color: transparent;
+    border-radius: 1rem;
+    
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap";
