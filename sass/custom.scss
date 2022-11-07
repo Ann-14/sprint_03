@@ -1,0 +1,32 @@
+
+header{
+    background-image: url("../images/mike-petrucci-c9FQyqIECds-unsplash.jpg")
+    
+    }
+button{
+    width: 7rem;
+}
+
+button.myButton{
+    background-color: rgb(226, 171, 54);
+    color: black;
+    border-color: transparent;
+    border-radius: 1rem
+}
+a.btn.myButton{
+    background-color: rgb(226, 171, 54);
+    color: black;
+    border-color: transparent;
+    border-radius: 1rem
+}
+
+a.nav-link{
+    color: black;
+}
+a.nav-link:hover{
+text-decoration: underline;
+   
+   
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap";

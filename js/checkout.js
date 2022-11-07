@@ -3,6 +3,7 @@ const form = document.querySelector(".form");
 // const btnSubmit = document.querySelector("#btn-submit")
 
 // Exercise 6
+if(form){
 form.addEventListener('submit', e => {
 	//preventing reload if error
 	let error = 0;
@@ -78,7 +79,8 @@ form.addEventListener('submit', e => {
 		error++;
 		fPhone.focus()
 
-	} else {
+	} 
+	else {
 		if (fPhone.value.match(regEx.regPhone)) {
 			fPhone.classList.remove('is-invalid')
 			fPhone.classList.add('is-valid')
@@ -89,7 +91,7 @@ form.addEventListener('submit', e => {
 	} else {
 		alert('Saved!✔')
 	}
-})
+})}
 
 	// Get the error elements
 	// let errorName = document.getElementById("errorName");
